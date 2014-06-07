@@ -1,0 +1,10 @@
+//index
+
+<div class="main">
+<ul>
+	<% for user in @users %>
+		<% name = user.first_name + " " + user.last_name + "\n" %>
+		<li><h2><%= link_to name, :controller => "photos", :action => "index", :id => user.id %></h2></li>
+	<% end %>
+</ul>
+</div>

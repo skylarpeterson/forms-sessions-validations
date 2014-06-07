@@ -1,0 +1,31 @@
+//index
+
+<div class="main">
+	<h2 class="upload_link"><%= link_to "Upload Photo", :controller => "photos", :action => "new" %></h2>
+	<% @photos.each do |photo| %>
+		<div class="photo_all">
+			<table>
+				<tr>
+					<td>
+						<div class="photo">	
+							<img src=<%= "/images/" + photo.file_name %>></img>
+							<h3>Photo Created: <%= photo.date_time %></h3>
+						</div>
+					</td>
+					<td>
+						<div class="comments">
+							<h2>Comments:</h2>
+							<% comments = photo.comments %>
+							<% comments.each do |comment| %>
+								<% name = comment.user.first_name + " " + comment.user.last_name + ": " %>	
+								<p class="comment"><%= link_to name, :controller => "photos", :action => "index", :id => comment.user.id %><%= comment.comment %></p>
+								<p class="timestamp">Commented: <%= comment.date_time %></p>
+							<% end %>
+							<h2 class="new_comment"><%= link_to "New Comment", :controller => "comments", :action => "new", :id => photo.id %></h2>
+						</div>
+					</td>
+				<tr>
+			</table>
+		</div>
+	<% end %>
+</div>
